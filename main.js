@@ -1,5 +1,5 @@
 function preload() {
-
+ mush=loadImage("https://i.postimg.cc/6qVHyR72/mushtache2.png");
 }
 
 function setup() {
@@ -13,12 +13,8 @@ function setup() {
     console.log("poseNet")
 }
 
-function draw() {
-    image(video, 0, 0, 300, 300);
-}
-
 function take_snapshot() {
-    save('clown.jpg')
+    save('mushtache.jpg')
 }
 function modelLoaded() {
     console.log("PoseNet is Iniciated");
@@ -27,9 +23,14 @@ function modelLoaded() {
 function gotposes(results) {
     if (results.length > 0) {
         console.log(results);
-        noseX = results[0].pose.nose.x;
-        noseY = results[0].pose.nose.y;
-        console.log("noseX =" + noseX);
-        console.log("noseY =" + noseY);
+        mushX = results[0].pose.mush.x;
+        mushY = results[0].pose.mush.y;
+        console.log("mushX =" + mushX);
+        console.log("mushY =" + mushY);
     }
+}
+
+function draw() {
+    image(video, 0, 0, 300, 300);
+    image(mush,mushX,mushY,30,30)
 }
